@@ -174,3 +174,7 @@ NOTE
 You are allowed to miss up to two Challenge assignments and still earn your certificate. If you complete all Challenge assignments, your lowest two grades will be dropped. If you wish to skip this assignment, click Next, and move on to the next Module.
 
 Comments are disabled for graded submissions in BootCamp Spot. If you have questions about your feedback, please notify your instructional staff or the Student Success Manager. If you would like to resubmit your work for an improved grade, you can use the Resubmit Assignment button to upload new links. You may resubmit up to three times for a total of four submissions.
+
+https://fonts.google.com/
+https://bootstrapious.com/p/bootstrap-sticky-navbar
+<a href="https://www.flaticon.com/free-icons/programmer" title="programmer icons">Programmer icons created by Paul J. - Flaticon</a>
