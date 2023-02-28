@@ -178,3 +178,4 @@ Comments are disabled for graded submissions in BootCamp Spot. If you have quest
 https://fonts.google.com/
 https://bootstrapious.com/p/bootstrap-sticky-navbar
 <a href="https://www.flaticon.com/free-icons/programmer" title="programmer icons">Programmer icons created by Paul J. - Flaticon</a>
+https://mdbootstrap.com/docs/standard/navigation/footer/
