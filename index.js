@@ -194,29 +194,30 @@ const addEmployee = () => {
     ])
     .then(employeeData => {
         let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
-
-        // const { avatar_url } = await api.getUser(github);
-
+    
         let employee;
-
+        let avatar_url;
+    
         if (role === 'Engineer') {
             const githubUrl = `https://api.github.com/users/${github}`;
-
+    
             try {
                 const response = axios.get(githubUrl);
-                const { avatar_url } = response.data;
+                avatar_url = response.data.avatar_url;
                 employee = new Engineer(name, id, email, github, avatar_url);
                 console.log(employee);
               } catch (error) {
                 console.log(`Error fetching GitHub data for ${github}: ${error.message}`);
                 employee = new Engineer(name, id, email, github);
               }
-            } else if (role === 'Intern') {
-              employee = new Intern(name, id, email, school, avatar_url);
-              console.log(employee);
-            }
+        } else if (role === 'Intern') {
+            avatar_url = `https://example.com/${name}.jpg`;
+            employee = new Intern(name, id, email, school, avatar_url);
+            console.log(employee);
+        }
+    
         crewArray.push(employee);
-
+    
         if (confirmAddEmployee) {
             return addEmployee(crewArray);
         } else {
@@ -224,7 +225,6 @@ const addEmployee = () => {
         }
     });
 };
-
 addManager()
     .then(addEmployee)
     .then(crewArray => {
