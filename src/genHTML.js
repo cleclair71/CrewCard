@@ -5,7 +5,7 @@ const generateManager = function (manager) {
                     <div class="card">
                         <div class="card-header">
                             <div class="img1"><img src="../assets/managerpic.jpg" alt=""></div>
-                            <div class="avatar"><img src="${manager.avatar_url}" onerror="../assets/defaultprofile.jpg" alt=""></div>
+                            <div class="avatar"><img src="${manager.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
                             <div class="main-text">
                                 <h3>${manager.name}</h3>
                                 <h4>Manager</h4><img src="../assets/managericon.png" alt="manager icon">
@@ -30,7 +30,7 @@ const generateManager = function (manager) {
                     <div class="card">
                         <div class="card-header">
                             <div class="img1"><img src="../assets/engineerpic.jpg" alt=""></div>
-                            <div class="avatar"><img src="${engineer.avatar_url}" onerror="../assets/defaultprofile.jpg" alt=""></div>
+                            <div class="avatar"><img src="${engineer.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
                             <div class="main-text">
                                 <h3>${engineer.name}</h3>
                                 <h4>Engineer</h4><img src="../assets/developer.png" alt="engineer icon">
@@ -53,7 +53,7 @@ const generateManager = function (manager) {
     <div class="card">
         <div class="card-header">
             <div class="img1"><img src="../assets/internpic.jpg" alt=""></div>
-            <div class="avatar"><img src="${intern.avatar_url}" onerror="../assets/defaultprofile.jpg" alt=""></div>
+            <div class="avatar"><img src="${intern.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
             <div class="main-text">
                 <h3>${intern.name}</h3>
                 <h4>Intern</h4><img src="../assets/internship.png" alt="intern icon">

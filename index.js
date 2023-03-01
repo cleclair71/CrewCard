@@ -1,8 +1,8 @@
-const genHTML = require('./genHTML');
+const genHTML = require('./src/genHTML.js');
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const api = require('./api.js');
+const api = require('./src/api.js');
 const util = require('util');
 
 const Manager = require('./lib/Manager');
@@ -75,20 +75,13 @@ const addManager = () => {
         },
 
     ])
-//         .then(managerInput => {
-//             const { name, id, email, officeNumber, avatar_url} = managerInput;
-//             const manager = new Manager(name, id, email, officeNumber, username);
 
-//             crewArray.push(manager);
-//             console.log(manager);
-//         })
-// };
 .then(async managerInput => {
     const { name, id, email, officeNumber, username } = managerInput;
     let avatar_url = '';
 
     try {
-        const response = await axios.get(`https://api.github.com/users/${username}`);
+        const response = await axios.get(`https://api.github.com/users/${Manager.username}`);
         avatar_url = response.data.avatar_url;
     } catch (error) {
         console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
@@ -199,7 +192,7 @@ const addEmployee = () => {
         let avatar_url;
     
         if (role === 'Engineer') {
-            const githubUrl = `https://api.github.com/users/${github}`;
+            const githubUrl = `https://api.github.com/users/${Engineer.github}`;
     
             try {
                 const response = axios.get(githubUrl);
@@ -211,7 +204,7 @@ const addEmployee = () => {
                 employee = new Engineer(name, id, email, github);
               }
         } else if (role === 'Intern') {
-            avatar_url = `https://example.com/${name}.jpg`;
+            avatar_url = `https://api.github.com/users/${Intern.username}`;
             employee = new Intern(name, id, email, school, avatar_url);
             console.log(employee);
         }
@@ -231,7 +224,12 @@ addManager()
         return genHTML(crewArray);
     })
     .then(pageHTML => {
-        return writeFile(pageHTML);
+        return fs.appendFile('./dist/index.html', pageHTML, err => {
+            if (err) {
+                console.log(err);
+                return;
+                }
+            });
     })
     .then(() => {
         console.log('Your Crew Cards have been created! Check out index.html to see it!');
