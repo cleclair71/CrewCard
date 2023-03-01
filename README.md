@@ -1,6 +1,173 @@
-# CrewCard
+  ![GitHub license](https://img.shields.io/badge/license-MIT-pink.svg)
+  <a name="readme-top"></a>
+ <br />
+ <div align="center">
+ <h1 align="center">CrewCard</h1>
+    <a href="https://github.com/cleclair71/CrewCard">
+     <img src="/assets/crewcardstacked1.jpg" alt="Logo" width="200" height="200">
+   </a>
+    <p align="center">
+      Teamwork made easy with our input generated CLI crew cards!
+    </p>
+  
+<br />
+<details><summary>Table of Contents;</summary>
 
-Object-Oriented Programming Challenge: Team Profile Generator
+* [About the Project](#description) 
+ 
+* [Installation](#installation)
+ 
+* [Usage](#usage) 
+
+* [Contributing](#contributing)
+
+* [Resources](#resources)
+ 
+* [license](#license)
+
+* [Questions](#questions)
+
+</details>
+</div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="description"></a>
+## :rocket: About The Project
+<p align="center">
+  <img src="/Assets/img/Capture.JPG" alt="Screenshot"/>
+</p>
+
+Introducing our command-line application designed to help managers generate a webpage that displays their team's basic information, such as their email addresses and GitHub profiles. This allows for quick and easy access to important team member information. The webpage is nicely formatted and based on the user input. When you click on an email address in the webpage, your default email program will open and populate the TO field with the email address. Additionally, when you click on a team member's GitHub username, the application will open that GitHub profile in a new tab.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="installation"></a>
+
+## :hammer_and_wrench: Installation
+
+1. Clone the repository 
+
+```bash
+git clone https://github.com/cleclair71/readme-generator.git
+```
+2. Change the Working Directory
+
+```bash
+cd readme-generator
+```
+3. Install [`inquirer`](https://www.npmjs.com/package/inquirer)
+
+```bash
+npm install inquirer
+```
+4. Run the App
+
+```bash
+\readme-generator\Develop> node index.js
+```
+
+This will start the application and prompt you to answer the required prompts in the command line. 
+
+After answering all the prompts, your README file will be generated and saved as README.md in the develop folder. 
+
+Additionally, the README will have some automatically generated badges for your repository courtesy of shields.io.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+  <a name="usage"></a>
+
+## :computer: Usage
+
+<div align="center">
+<a href="https://drive.google.com/file/d/1qBYG2vbscJXd2rnEmpjzx8Tr6mmLNwMo/view">
+     <img src="/Assets/img/Untitled_ Feb 23, 2023 1_44 PM (1).gif" alt="run-through gif" width="740" height="480">
+   </a>
+   </div>
+   <br />
+   <p align="center"> 
+   <a href="https://drive.google.com/file/d/1qBYG2vbscJXd2rnEmpjzx8Tr6mmLNwMo/view">Walk Through Video</a>
+   </p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+  
+
+ <a name="contributing"></a>
+
+## :handshake: Contributing
+
+Thank you for your interest in contributing to this project! By contributing, you can help make this project even better for everyone.
+
+### How to Contribute
+
+If you would like to contribute to this project, please follow these steps:
+      
+1. **Fork the Project:** Fork this project to your own GitHub account.
+
+2. **Create your Feature Branch:** Create a branch for your feature using:
+```bash 
+git checkout -b your-branch-name.
+```
+3. **Commit your Changes:** Commit your changes using:
+```bash 
+git commit -m "Your commit message here"
+```
+4. **Push to the Branch:** Push your changes to the branch using:
+```bash 
+git push origin your-branch-name
+```
+5. **Open a Pull Request:** Open a pull request to merge your changes into the main branch of the original project.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="license"></a>
+
+## :clipboard: License
+MIT
+  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="resources"></a>
+## :mag_right: Resources
+
+* [Emoji Cheatsheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+* [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Git Ignore and .gitignore](https://www.w3schools.com/git/git_ignore.asp?remote=github)
+* [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+* [How To Create Interactive Command-line Prompts with Inquirer.js](https://www.digitalocean.com/community/tutorials/nodejs-interactive-command-line-prompts)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="questions"></a>
+
+## :mailbox_with_no_mail: Questions?
+
+If you have any questions about this project, please don't hesitate to reach out to me. I'm always happy to help and provide additional information.
+
+### How to Ask a Question
+
+1. **Check the existing documentation:** Before asking a question, please take a moment to review the existing documentation. Your question may already be answered in the README file or other project documentation.
+
+2. **Create a new issue:** If you can't find the answer to your question in the documentation, please create a new issue in the project's issue tracker. Be sure to provide as much detail as possible about your question, including any relevant code snippets or screenshots.
+
+3. **Contact cleclair71 directly:** If you prefer to contact me directly, you can do so by sending me an email at cassieleclair71@gmail.com. Please include "Question about README Generator" in the subject line so that I can quickly identify your message.
+<div align="center">
+<a href="https://github.com/cleclair71/readme-generator">
+     <img src="/Assets/img/cassielogo.png" alt="head shot" width="150" height="150">
+   </a>
+   </div>
+   <p align="center"> 
+   <a href="https://github.com/cleclair71/readme-generator/tree/master">My Repository</a>
+   </p>
+   
+### :pray: Feedback and Suggestions
+
+I welcome feedback and suggestions for this project. If you have ideas for how to improve the project, please feel free to create a new issue or contact me directly. Your input is greatly appreciated!
+ 
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
+ 
+
+<!-- Object-Oriented Programming Challenge: Team Profile Generator
 Your challenge is to build a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person.
 
 Because this Challenge will require the use of the Inquirer package, ensure that you install and use Inquirer version 8.2.4. To do so, use the following command in your project folder: npm i inquirer@8.2.4.
