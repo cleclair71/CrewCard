@@ -59,7 +59,7 @@ cd readme-generator
 3. Install [`inquirer`](https://www.npmjs.com/package/inquirer)
 
 ```bash
-npm install inquirer
+npm install inquirer axios jest --save-dev
 ```
 4. Run the App
 

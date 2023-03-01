@@ -78,15 +78,15 @@ const addManager = () => {
 
 .then(async managerInput => {
     const { name, id, email, officeNumber, username } = managerInput;
-    let avatar_url = '';
+    // let avatar_url = '';
 
-    try {
-        const response = await axios.get(`https://api.github.com/users/${Manager.username}`);
+    // try {
+    //     const response = await axios.get(`https://api.github.com/users/${Manager.username}`);
         avatar_url = response.data.avatar_url;
-    } catch (error) {
-        console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-    }
-
+    // } catch (error) {
+    //     console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
+    // }
+    console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
     const manager = new Manager(name, id, email, officeNumber, username, avatar_url);
     crewArray.push(manager);
     console.log(manager);
@@ -192,22 +192,26 @@ const addEmployee = () => {
         let avatar_url;
     
         if (role === 'Engineer') {
-            const githubUrl = `https://api.github.com/users/${Engineer.github}`;
-    
             try {
-                const response = axios.get(githubUrl);
-                avatar_url = response.data.avatar_url;
-                employee = new Engineer(name, id, email, github, avatar_url);
-                console.log(employee);
-              } catch (error) {
-                console.log(`Error fetching GitHub data for ${github}: ${error.message}`);
-                employee = new Engineer(name, id, email, github);
-              }
-        } else if (role === 'Intern') {
-            avatar_url = `https://api.github.com/users/${Intern.username}`;
-            employee = new Intern(name, id, email, school, avatar_url);
-            console.log(employee);
-        }
+              const userData = await api.getUser(github);
+              avatar_url = userData.data.avatar_url;
+              employee = new Engineer(name, id, email, github, avatar_url);
+              console.log(employee);
+            } catch (error) {
+              console.log(`Error fetching GitHub data for ${github}: ${error.message}`);
+              employee = new Engineer(name, id, email, github);
+            }
+          } else if (role === 'Intern') {
+            try {
+              const userData = await api.getUser(github);
+              avatar_url = userData.data.avatar_url;
+              employee = new Intern(name, id, email, school, avatar_url);
+              console.log(employee);
+            } catch (error) {
+              console.log(`Error fetching GitHub data for ${github}: ${error.message}`);
+              employee = new Intern(name, id, email, school);
+            }
+          }
     
         crewArray.push(employee);
     
@@ -224,12 +228,7 @@ addManager()
         return genHTML(crewArray);
     })
     .then(pageHTML => {
-        return fs.appendFile('./dist/index.html', pageHTML, err => {
-            if (err) {
-                console.log(err);
-                return;
-                }
-            });
+        return fs.writeFileSync('./dist/index.html', pageHTML, {encoding:'utf8',flag:'w'});     
     })
     .then(() => {
         console.log('Your Crew Cards have been created! Check out index.html to see it!');
