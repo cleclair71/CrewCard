@@ -76,24 +76,19 @@ const addManager = () => {
 
     ])
 
-.then(async managerInput => {
-    const { name, id, email, officeNumber, username } = managerInput;
-    // let avatar_url = '';
+    .then(async managerInput => {
+        const { name, id, email, officeNumber, username } = managerInput;
+        try {
+          const userData = await api.getUser(username);
+          const manager = new Manager(name, id, email, officeNumber, username);
+          manager.avatar_url = userData.avatar_url;
+          crewArray.push(manager);
+          console.log(manager);
 
-    // try {
-    //     const response = await axios.get(`https://api.github.com/users/${Manager.username}`);
-        avatar_url = response.data.avatar_url;
-    // } catch (error) {
-    //     console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-    // }
-    console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-    const manager = new Manager(name, id, email, officeNumber, username, avatar_url);
-    crewArray.push(manager);
-    console.log(manager);
-})
-.catch(error => {
-    console.log(`Error adding manager: ${error.message}`);
-});
+        } catch (err) {
+            console.log(err);
+        }
+    })
 };
 
 //add employee questions
@@ -153,7 +148,7 @@ const addEmployee = () => {
         },
         {
             type: 'input',
-            name: 'github',
+            name: 'username',
             message: 'What is the employees Github username? (Required)',
             validate: nameInput => {
                 if (nameInput) {
@@ -185,43 +180,45 @@ const addEmployee = () => {
             default: false
         }
     ])
-    .then(employeeData => {
-        let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
-    
-        let employee;
-        let avatar_url;
-    
-        if (role === 'Engineer') {
-            try {
-              const userData = await api.getUser(github);
-              avatar_url = userData.data.avatar_url;
-              employee = new Engineer(name, id, email, github, avatar_url);
-              console.log(employee);
-            } catch (error) {
-              console.log(`Error fetching GitHub data for ${github}: ${error.message}`);
-              employee = new Engineer(name, id, email, github);
-            }
+
+      .then(async employeeData => {
+          let { name, id, email, role, username, school, confirmAddEmployee } = employeeData;
+      
+          let employee;
+          let avatar_url;
+      
+          if (role === 'Engineer') {
+              try {
+                  const userData = await api.getUser(username);
+                 const employee = new Engineer(name, id, email, username);
+                  employee.avatar_url = userData.avatar_url; // add avatar_url to employee object
+                  console.log(employee);
+              } catch (error) {
+                  console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
+                  employee = new Engineer(name, id, email, username);
+              }
           } else if (role === 'Intern') {
-            try {
-              const userData = await api.getUser(github);
-              avatar_url = userData.data.avatar_url;
-              employee = new Intern(name, id, email, school, avatar_url);
-              console.log(employee);
-            } catch (error) {
-              console.log(`Error fetching GitHub data for ${github}: ${error.message}`);
-              employee = new Intern(name, id, email, school);
-            }
+              const employee = new Intern(name, id, email, school, username);
+              try {
+                  const userData = await api.getUser(username);
+                  employee.avatar_url = userData.avatar_url;
+                  console.log(employee);
+              } catch (error) {
+                  console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
+              }
           }
-    
-        crewArray.push(employee);
-    
-        if (confirmAddEmployee) {
-            return addEmployee(crewArray);
-        } else {
-            return crewArray;
-        }
-    });
-};
+      
+          crewArray.push(employee);
+      
+          if (confirmAddEmployee) {
+              return addEmployee(crewArray);
+          } else {
+              return crewArray;
+          }
+      });
+  };
+
+
 addManager()
     .then(addEmployee)
     .then(crewArray => {
@@ -237,28 +234,3 @@ addManager()
         console.log(err);
     });
 
-// write to html
-
-// const writeFile = data => {
-//     fs.writeFile('./dist/index.html', data, err => {
-//         if (err) {
-//             console.log(err);
-//             return;
-//         } else {
-//             console.log('Your Crew Cards have been created! Check out index.html to see it!')
-//         }
-//     })
-// };
-
-//     addManager()
-//     .then(addEmployee)
-//     .then(crewArray => {
-//         return genHTML(crewArray);
-//     })
-//     .then(pageHTML => {
-//         return writeFile(pageHTML);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// };

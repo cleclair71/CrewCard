@@ -40,7 +40,7 @@ const generateManager = function (manager) {
                             <p class="id">ID: ${engineer.id}</p>
                             <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
                             <p class="github">Github: <a
-                                    href="https://github.com/${engineer.github}">${engineer.github}</a></p>
+                                    href="https://github.com/${engineer.username}">${engineer.username}</a></p>
                         </div>
                     </div>
                 </div>
