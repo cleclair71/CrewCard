@@ -347,3 +347,4 @@ https://bootstrapious.com/p/bootstrap-sticky-navbar
 <a href="https://www.flaticon.com/free-icons/programmer" title="programmer icons">Programmer icons created by Paul J. - Flaticon</a>
 https://mdbootstrap.com/docs/standard/navigation/footer/
 https://www.w3schools.com/jsref/event_onerror.asp
+https://getbootstrap.com/docs/4.1/components/collapse/
