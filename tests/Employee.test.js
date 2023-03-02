@@ -1,30 +1,33 @@
 const Employee = require('./Employee');
 
-Test('Can instantiate Employee instance', () => {
-    const e = new Employee();
-    expect(typeof(e)).toBe('object');
+test('creates an employee object', () => {
+    const employee = new Employee('Cassie', 1, 'cassieleclair71@gmail.com');
+
+    expect(employee.name).toEqual(expect.any(String));
+    expect(employee.id).toEqual(expect.any(Number));
+    expect(employee.email).toEqual(expect.any(String));
 });
 
-Test('Can set name via constructor arguments', () => {
-    const name = 'Alice';
-    const e = new Employee(name);
-    expect(e.name).toBe(name);
+test('gets employee name', () => {
+    const employee = new Employee('Cassie', 1, 'cassieleclair71@gmail.com');
+
+    expect(employee.getName()).toEqual(expect.any(String));
 });
 
-Test('Can set id via constructor argument', () => {
-    const testValue = 100;
-    const e = new Employee('Foo', testValue);
-    expect(e.id).toBe(testValue);
+test('gets employee id', () => {
+    const employee = new Employee('Cassie', 1, 'cassieleclair71@gmail.com');
+
+    expect(employee.getId()).toEqual(expect.any(Number));
 });
 
-Test('Can set email via constructor argument', () => {
-    const testValue = '';
-    const e = new Employee('Foo', 1, testValue);
-    expect(e.email).toBe(testValue);
+test('gets employee email', () => {
+    const employee = new Employee('Cassie', 1, 'cassieleclair71@gmail.com');
+
+    expect(employee.getEmail()).toEqual(expect.any(String));
 });
 
-Test('Can get avatar_url via constructor argument', () => {
-    const testValue = '';
-    const e = new Employee('Foo', 1, testValue);
-    expect(e.avatar_url).toBe(testValue);
+test('gets employee role', () => {
+    const employee = new Employee('Cassie', 1, 'cassieleclair71@gmail.com');
+
+    expect(employee.getRole()).toEqual('Employee');
 });
