@@ -7,24 +7,28 @@ const generateManager = function (manager) {
                             <div class="img1"><img src="../assets/managerpic.jpg" alt=""></div>
                             <div class="avatar"><img src="${manager.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
                             <div class="main-text">
-                                <h3>${manager.name}</h3>
-                                <h4>Manager</h4><img src="../assets/managericon.png" alt="manager icon">
+                                    <h3>${manager.name}</h3>
+                                    <h4>Manager</h4><img class="logo" src="../assets/managericon.png"
+                                        alt="manager icon"> <br>
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseManager"
+                                        role="button" aria-expanded="false" aria-controls="collapseManager">
+                                        @
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="id">ID: ${manager.id}</p>
-                            <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
-                            <p class="office">Office Number: ${manager.officeNumber}
-
-                            </p>
-                        </div>
+                            <div class="card-body collapse" id="collapseManager">
+                                <p class="id">ID: ${manager.id}</p>
+                                <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+                                <p class="office">Office Number: ${manager.officeNumber}
+                                </p>
+                            </div>
 
                     </div>
                 </div>
 `;
 }
-    // create engineer card
-   const generateEngineer = function (engineer) { 
+// create engineer card
+const generateEngineer = function (engineer) {
     return `
 <div class="col-md-4">
                     <div class="card">
@@ -32,45 +36,52 @@ const generateManager = function (manager) {
                             <div class="img1"><img src="../assets/engineerpic.jpg" alt=""></div>
                             <div class="avatar"><img src="${engineer.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
                             <div class="main-text">
-                                <h3>${engineer.name}</h3>
-                                <h4>Engineer</h4><img src="../assets/developer.png" alt="engineer icon">
+                                    <h3>${engineer.name}</h3>
+                                    <h4>Engineer</h4><img class="logo" src="../assets/developer.png"
+                                        alt="engineer icon">
+                                    <br>
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseEngineer"
+                                        role="button" aria-expanded="false" aria-controls="collapseEngineer"> @ </a>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="id">ID: ${engineer.id}</p>
-                            <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-                            <p class="github">Github: <a
-                                    href="https://github.com/${engineer.username}">${engineer.username}</a></p>
-                        </div>
+                            <div class="card-body collapse" id="collapseEngineer">
+                                <p class="id">ID: ${engineer.id}</p>
+                                <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+                                <p class="github">Github: <a
+                                        href="https://github.com/${engineer.username}">${engineer.username}</a></p>
+                            </div>
                     </div>
                 </div>
 `;
 }
-    // create intern card
-   const generateIntern = function (intern) { 
+// create intern card
+const generateIntern = function (intern) {
     return `
     <div class="col-md-4">
     <div class="card">
         <div class="card-header">
-            <div class="img1"><img src="../assets/internpic.jpg" alt=""></div>
+     <div class="img1"><img src="../assets/internpic.jpg" alt=""></div>
             <div class="avatar"><img src="${intern.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
             <div class="main-text">
-                <h3>${intern.name}</h3>
-                <h4>Intern</h4><img src="../assets/internship.png" alt="intern icon">
-            </div>
-        </div>
-        <div class="card-body">
-            <p class="id">ID: ${intern.id}</p>
-            <p class="email">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
-            <p class="school">School: ${intern.school}</p>
-        </div>
+         <h3>${intern.name}</h3>
+            <h4>Intern</h4><img class="logo" src="../assets/internship.png" alt="intern icon">
+             <br>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseIntern" role="button" aria-expanded="false" aria-controls="collapseIntern"> @</a>
+         </div>
+                            </div>
+                            <div class="card-body collapse" id="collapseIntern">
+                                <p class="id">ID: ${intern.id}</p>
+                                <p class="email">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
+                                <p class="school">School: ${intern.school}</p>
+                            </div>
     </div>
 </div>
 `;
 }
-    // push to page array
+// push to page array
 
-    const generateHTML = (data) => {
+const generateHTML = (data) => {
     pageArray = [];
 
     for (let i = 0; i < data.length; i++) {
@@ -105,8 +116,8 @@ const generateManager = function (manager) {
     return generateCrew;
 
 }
-    // create html
-    const generateCrewPage = function (employeeCards) {
+// create html
+const generateCrewPage = function (employeeCards) {
     return `
     <!Doctype html>
     <html lang="en">
@@ -122,6 +133,7 @@ const generateManager = function (manager) {
         <link
             href="https://fonts.googleapis.com/css2?family=Concert+One&family=Montserrat+Alternates:wght@100;300&display=swap"
             rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <link rel="stylesheet" href="../dist/stylesheet.css">
     </head>
     
@@ -136,19 +148,22 @@ const generateManager = function (manager) {
                                 class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="#">Home <span
-                                            class="sr-only">(current)</span></a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                                <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+                                <li class="nav-item active"><a href="#" onclick="alert('Please open your terminal and enter the command: cd \CrewCard> node index.js')">Make New Crew</a></li>
                             </ul>
                         </div>
                 </div>
             </nav>
         </header>
     
+        <!-- team cards -->
         <div class="profile-area">
-            <div class="container">
-                <div class="row justify-content-center">
+            <div class="jumbotron">
+                <h1 class="display-4">Your Crew</h1>
+                <p class="lead">Teamwork is
+                    the backbone of any successful project.</p>
+                <hr class="my-4">
+                <div class="container">
+                    <div class="row justify-content-center">
 
                     ${employeeCards}
 
@@ -156,25 +171,25 @@ const generateManager = function (manager) {
             </div>
         </div>
         <footer class="bg-light text-center text-lg-start">
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(255, 255, 255, 0.2);">
-                The MIT Licence (MIT) 2023:
-                <a class="text-info" href="https://github.com/cleclair71?tab=repositories">Cassie LeClair</a>
-            </div>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(255, 255, 255, 0.2);">
+            The MIT Licence (MIT) 2023:
+            <a class="text-info" href="https://github.com/cleclair71?tab=repositories">Cassie LeClair</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
 
-        </footer>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    </body>
-    
-    </html>`;
+</html>`;
 }
 
 module.exports = generateHTML;
