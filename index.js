@@ -80,10 +80,10 @@ const addManager = () => {
     ])
 
     .then(async managerInput => {
-        const { name, id, email, officeNumber, username } = managerInput;
+        const { name, id, email, username, officeNumber } = managerInput;
         try {
           const userData = await api.getUser(username);
-          const manager = new Manager(name, id, email, officeNumber, username);
+          const manager = new Manager(name, id, email, username, officeNumber);
           manager.avatar_url = userData.avatar_url;
           crewArray.push(manager);
           console.log(manager);

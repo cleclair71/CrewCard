@@ -232,7 +232,7 @@ pageArray.push(employees
                 <div class="container">
                     <div class="row justify-content-center">
 
-                    ${generateCrewPage(employeeCards)}
+                    ${generateCrew(employees)}
 
                 </div>
             </div>
