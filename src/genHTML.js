@@ -1,61 +1,62 @@
 // create manager card
-const generateManager = function (manager) {
-    return `
-<div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="img1"><img src="../assets/managerpic.jpg" alt=""></div>
-                            <div class="avatar"><img src="${manager.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
-                            <div class="main-text">
-                                    <h3>${manager.name}</h3>
-                                    <h4>Manager</h4><img class="logo" src="../assets/managericon.png"
-                                        alt="manager icon"> <br>
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseManager"
-                                        role="button" aria-expanded="false" aria-controls="collapseManager">
-                                        @
-                                    </a>
+const generateCrew = (employees) => {
+    // let pageArray = [];
+    const generateManager = function (manager) {
+        return `
+    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="img1"><img src="../assets/managerpic.jpg" alt=""></div>
+                                <div class="avatar"><img src="${manager.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
+                                <div class="main-text">
+                                        <h3>${manager.name}</h3>
+                                        <h4>Manager</h4><img class="logo" src="../assets/managericon.png"
+                                            alt="manager icon"> <br>
+                                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseManager"
+                                            role="button" aria-expanded="false" aria-controls="collapseManager">
+                                            @
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body collapse" id="collapseManager">
-                                <p class="id">ID: ${manager.id}</p>
-                                <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
-                                <p class="office">Office Number: ${manager.officeNumber}
-                                </p>
-                            </div>
-
-                    </div>
-                </div>
-`;
-}
-// create engineer card
-const generateEngineer = function (engineer) {
-    return `
-<div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="img1"><img src="../assets/engineerpic.jpg" alt=""></div>
-                            <div class="avatar"><img src="${engineer.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
-                            <div class="main-text">
-                                    <h3>${engineer.name}</h3>
-                                    <h4>Engineer</h4><img class="logo" src="../assets/developer.png"
-                                        alt="engineer icon">
-                                    <br>
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseEngineer"
-                                        role="button" aria-expanded="false" aria-controls="collapseEngineer"> @ </a>
-
+                                <div class="card-body collapse" id="collapseManager">
+                                    <p class="id">ID: ${manager.id}</p>
+                                    <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+                                    <p class="office">Office Number: ${manager.officeNumber}
+                                    </p>
                                 </div>
-                            </div>
-                            <div class="card-body collapse" id="collapseEngineer">
-                                <p class="id">ID: ${engineer.id}</p>
-                                <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-                                <p class="github">Github: <a
-                                        href="https://github.com/${engineer.username}">${engineer.username}</a></p>
-                            </div>
+    
+                        </div>
                     </div>
-                </div>
-`;
-}
-// create intern card
+    `;
+    }
+    const generateEngineer = function (engineer) {
+        return `
+    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="img1"><img src="../assets/engineerpic.jpg" alt=""></div>
+                                <div class="avatar"><img src="${engineer.avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
+                                <div class="main-text">
+                                        <h3>${engineer.name}</h3>
+                                        <h4>Engineer</h4><img class="logo" src="../assets/developer.png"
+                                            alt="engineer icon">
+                                        <br>
+                                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseEngineer"
+                                            role="button" aria-expanded="false" aria-controls="collapseEngineer"> @ </a>
+    
+                                    </div>
+                                </div>
+                                <div class="card-body collapse" id="collapseEngineer">
+                                    <p class="id">ID: ${engineer.id}</p>
+                                    <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+                                    <p class="github">Github: <a
+                                            href="https://github.com/${engineer.username}">${engineer.username}</a></p>
+                                </div>
+                        </div>
+                    </div>
+    `;
+    }
+    // create intern card
 const generateIntern = function (intern) {
     return `
     <div class="col-md-4">
@@ -79,45 +80,111 @@ const generateIntern = function (intern) {
 </div>
 `;
 }
+    // employees.forEach(employee => {
+    //     const { name, id, email, role, avatar_url } = employee;
+
+    //     let additionalInfo = '';
+
+    //     switch (role) {
+    //         case 'Manager':
+    //             additionalInfo = `Office Number: ${employee.officeNumber}`;
+    //             break;
+    //         case 'Engineer':
+    //             additionalInfo = `GitHub: <a href="https://github.com/${employee.username}">${employee.username}</a>`;
+    //             break;
+    //         case 'Intern':
+    //             additionalInfo = `School: ${employee.school}`;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+
+    //     const card = `
+    //     <div class="col-md-4">
+    //         <div class="card">
+    //             <div class="card-header">
+    //                 <div class="img1"><img src="../assets/${role.toLowerCase()}pic.jpg" alt=""></div>
+    //                 <div class="avatar"><img src="${avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
+    //                 <div class="main-text">
+    //                     <h3>${name}</h3>
+    //                     <h4>${role}</h4><img class="logo" src="../assets/${role.toLowerCase()}icon.png" alt="${role} icon">
+    //                     <br>
+    //                     <a class="btn btn-primary" data-toggle="collapse" href="#collapse${role}" role="button" aria-expanded="false" aria-controls="collapse${role}">@</a>
+    //                 </div>
+    //             </div>
+    //             <div class="card-body collapse" id="collapse${role}">
+    //                 <p class="id">ID: ${id}</p>
+    //                 <p class="email">Email: <a href="mailto:${email}">${email}</a></p>
+    //                 <p class="${role.toLowerCase()}">${additionalInfo}</p>
+    //             </div>
+    //         </div>
+    //     </div>
+    //     `;
+
+    //     pageArray.push(card);
+    // });
+ 
+
+
+// create engineer card
+pageArray = [];
+pageArray.push(employees
+    .filter(employee => employee.getRole() === 'Manager')
+    .map(manager => generateManager(manager)));
+
+    pageArray.push(employees
+        .filter(employee => employee.getRole() === 'Engineer')
+        .map(engineer => generateEngineer(engineer))
+        .join(''));
+
+        pageArray.push(employees
+            .filter(employee => employee.getRole() === 'Intern')
+            .map(intern => generateIntern(intern))
+            .join(''));
+            return pageArray.join('');
+        }
+
 // push to page array
+//! error getRole not defined
 
-const generateHTML = (data) => {
-    pageArray = [];
+// const generateHTML = (data) => {
+//     
 
-    for (let i = 0; i < data.length; i++) {
-        const employee = data[i];
-        const role = employee.getRole();
+//     for (let i = 0; i < data.length; i++) {
+//         const employee = data[i];
+//         const role = employee.getRole();
 
-        if (role === 'Manager') {
-            const managerCard = generateManager(employee);
+//         if (role === 'Manager') {
+//             const managerCard = generateManager(employee);
 
-            pageArray.push(managerCard);
+//             pageArray.push(managerCard);
 
-        }
+//         }
 
-        if (role === 'Engineer') {
-            const engineerCard = generateEngineer(employee);
+//         if (role === 'Engineer') {
+//             const engineerCard = generateEngineer(employee);
 
-            pageArray.push(engineerCard);
+//             pageArray.push(engineerCard);
 
-        }
+//         }
 
-        if (role === 'Intern') {
-            const internCard = generateIntern(employee);
+//         if (role === 'Intern') {
+//             const internCard = generateIntern(employee);
 
-            pageArray.push(internCard);
+//             pageArray.push(internCard);
 
-        }
+//         }
 
-    }
+//     }
 
-    const employeeCards = pageArray.join('')
-    const generateCrew = generateCrewPage(employeeCards);
-    return generateCrew;
+//     const employeeCards = pageArray.join('')
+//     const generateCrew = generateCrewPage(employeeCards);
+//     return generateCrew;
 
-}
+// }
 // create html
-const generateCrewPage = function (employeeCards) {
+// const generateCrewPage = function (employeeCards) {
+    module.exports = employees => {
     return `
     <!Doctype html>
     <html lang="en">
@@ -165,7 +232,7 @@ const generateCrewPage = function (employeeCards) {
                 <div class="container">
                     <div class="row justify-content-center">
 
-                    ${employeeCards}
+                    ${generateCrewPage(employeeCards)}
 
                 </div>
             </div>
@@ -192,4 +259,4 @@ const generateCrewPage = function (employeeCards) {
 </html>`;
 }
 
-module.exports = generateHTML;
+// module.exports = generateHTML;

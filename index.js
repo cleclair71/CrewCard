@@ -3,18 +3,21 @@ const genHTML = require('./src/genHTML.js');
 const inquirer = require('inquirer');
 const fs = require('fs');
 const api = require('./src/api.js');
-const util = require('util');
+const path = require('path');
 
+const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+const OUTPUT_DIR = path.resolve(__dirname, 'dist');
+const outputPath = path.join(OUTPUT_DIR, 'index.html');
 const crewArray = [];
 
 // Manager questions
 
 const addManager = () => {
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -99,7 +102,7 @@ const addEmployee = () => {
     Add a New Employee
     =================
     `);
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'list',
             name: 'role',
@@ -218,7 +221,7 @@ const addEmployee = () => {
       });
   };
 
-
+//! ERROR: TypeError: Cannot read property 'genHTML' of undefined
 addManager()
     .then(addEmployee)
     .then(crewArray => {
