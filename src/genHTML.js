@@ -1,6 +1,10 @@
 // create manager card
-const generateCrew = (employees) => {
+// const generateCrew = (employees) => {
     // let pageArray = [];
+
+    const Manager = require('../lib/Manager');
+    const Engineer = require('../lib/Engineer');
+    const Intern = require('../lib/Intern');
     const generateManager = function (manager) {
         return `
     <div class="col-md-4">
@@ -29,6 +33,8 @@ const generateCrew = (employees) => {
                     </div>
     `;
     }
+    module.exports = generateManager;
+
     const generateEngineer = function (engineer) {
         return `
     <div class="col-md-4">
@@ -56,6 +62,7 @@ const generateCrew = (employees) => {
                     </div>
     `;
     }
+    module.exports = generateEngineer;
     // create intern card
 const generateIntern = function (intern) {
     return `
@@ -79,112 +86,52 @@ const generateIntern = function (intern) {
     </div>
 </div>
 `;
-}
-    // employees.forEach(employee => {
-    //     const { name, id, email, role, avatar_url } = employee;
+};
+module.exports = generateIntern;
 
-    //     let additionalInfo = '';
-
-    //     switch (role) {
-    //         case 'Manager':
-    //             additionalInfo = `Office Number: ${employee.officeNumber}`;
-    //             break;
-    //         case 'Engineer':
-    //             additionalInfo = `GitHub: <a href="https://github.com/${employee.username}">${employee.username}</a>`;
-    //             break;
-    //         case 'Intern':
-    //             additionalInfo = `School: ${employee.school}`;
-    //             break;
-    //         default:
-    //             break;
-    //     }
-
-    //     const card = `
-    //     <div class="col-md-4">
-    //         <div class="card">
-    //             <div class="card-header">
-    //                 <div class="img1"><img src="../assets/${role.toLowerCase()}pic.jpg" alt=""></div>
-    //                 <div class="avatar"><img src="${avatar_url}" onerror="this.onerror=null;this.src='../assets/defaultprofile.jpg';" alt="Profile Picture"></div>
-    //                 <div class="main-text">
-    //                     <h3>${name}</h3>
-    //                     <h4>${role}</h4><img class="logo" src="../assets/${role.toLowerCase()}icon.png" alt="${role} icon">
-    //                     <br>
-    //                     <a class="btn btn-primary" data-toggle="collapse" href="#collapse${role}" role="button" aria-expanded="false" aria-controls="collapse${role}">@</a>
-    //                 </div>
-    //             </div>
-    //             <div class="card-body collapse" id="collapse${role}">
-    //                 <p class="id">ID: ${id}</p>
-    //                 <p class="email">Email: <a href="mailto:${email}">${email}</a></p>
-    //                 <p class="${role.toLowerCase()}">${additionalInfo}</p>
-    //             </div>
-    //         </div>
-    //     </div>
-    //     `;
-
-    //     pageArray.push(card);
-    // });
- 
-
-
-// create engineer card
-// pageArray = [];
-// pageArray.push(employees
-//     .filter(employee => employee.getRole() === 'Manager')
-//     .map(manager => generateManager(manager)));
-
-//     pageArray.push(employees
-//         .filter(employee => employee.getRole() === 'Engineer')
-//         .map(engineer => generateEngineer(engineer))
-//         .join(''));
-
-//         pageArray.push(employees
-//             .filter(employee => employee.getRole() === 'Intern')
-//             .map(intern => generateIntern(intern))
-//             .join(''));
-//             return pageArray.join('');
-        }
 
 // push to page array
 //! error getRole not defined
 
-// const generateHTML = (data) => {
-//     
 
-//     for (let i = 0; i < data.length; i++) {
-//         const employee = data[i];
-//         const role = employee.getRole();
-
-//         if (role === 'Manager') {
-//             const managerCard = generateManager(employee);
-
-//             pageArray.push(managerCard);
-
-//         }
-
-//         if (role === 'Engineer') {
-//             const engineerCard = generateEngineer(employee);
-
-//             pageArray.push(engineerCard);
-
-//         }
-
-//         if (role === 'Intern') {
-//             const internCard = generateIntern(employee);
-
-//             pageArray.push(internCard);
-
-//         }
-
-//     }
-
-//     const employeeCards = pageArray.join('')
-//     const generateCrew = generateCrewPage(employeeCards);
-//     return generateCrew;
-
-// }
+const generateCrew = (data) => {
+    let pageArray = [];
+    
+    for (let i = 0; i < data.length; i++) {
+      const employee = data[i];
+      const role = employee.getRole();
+  
+      if (role === 'Manager') {
+        const managerCard = generateManager(employee);
+  
+        pageArray.push(managerCard);
+  
+      }
+  
+      if (role === 'Engineer') {
+        const engineerCard = generateEngineer(employee);
+  
+        pageArray.push(engineerCard);
+  
+      }
+  
+      if (role === 'Intern') {
+        const internCard = generateIntern(employee);
+  
+        pageArray.push(internCard);
+  
+      }
+  
+    }
+    
+    const employeeCards = pageArray.join('')
+    
+    const crewDiv = document.querySelector(".row.justify-content-center");
+    crewDiv.innerHTML = employeeCards;
+  }
 // create html
-// const generateCrewPage = function (employeeCards) {
-    module.exports = employees => {
+const generateCrewPage = function (employeeCards) {
+    // module.exports = employees => {
     return `
     <!Doctype html>
     <html lang="en">
@@ -232,8 +179,8 @@ const generateIntern = function (intern) {
                 <div class="container">
                     <div class="row justify-content-center">
 
-                    ${generateCrew(employees)}
-
+                    ${employeeCards}
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,4 +206,4 @@ const generateIntern = function (intern) {
 </html>`;
 }
 
-// module.exports = generateHTML;
+module.exports = generateCrewPage;

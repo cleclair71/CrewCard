@@ -1,0 +1,126 @@
+/* font-family: 'Concert One', cursive;
+font-family: 'Montserrat Alternates', sans-serif; */
+
+.jumbotron {
+    background: #b9eaf9;
+    padding: 2%;
+    margin: 5%;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.jumbotron h1 {
+    font-size: min(max(40px, 5vw), 50px);
+    font-weight: 900;
+    text-align: center;
+    font-family: 'Concert One', cursive;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.jumbotron p {
+    font-size: min(max(14px, 3vw), 20px);
+    font-weight: 900;
+    text-align: center;
+    font-family: 'Montserrat Alternates', sans-serif;
+    letter-spacing: 2px;
+}
+.lead {
+    color: #ffffffbb;
+}
+.navbar-brand img{
+    padding: none;
+    max-height: 150px;
+}
+
+body {
+    background: #b9eaf9;
+}
+.profile-area {
+    padding:80px 0;
+}
+
+.card {
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
+    overflow: hidden;
+    border-radius: 15px;
+    min-width: 200px;
+    margin-top: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+ .btn {
+    border-radius: 50%;
+    text-align: center;
+    font-size: min(max(20px, 5vw), 24px);
+    font-weight: 600;
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin-top: 3%;
+    display: inline-block;
+    position: relative;
+    background-color: #b64ad498;
+   
+ }
+.img1 img{
+    
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 100%;
+}
+
+.avatar img{
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 7px solid #fff;
+    margin-top: -80px;
+}
+
+.card:hover .avatar img{
+    border-color: #b64ad4;
+    transition: .7s;
+}
+
+.main-text {
+    
+    text-align: center;
+}
+.main-text h3, h4{
+text-transform: uppercase;
+font-family: 'Concert One', cursive;
+}
+
+.main-text h4{
+    color: #b64ad4b4;
+}
+.main-text h3 {
+    font-size: min(max(16px, 4vw), 22px);
+    font-weight: 900;
+    font-family: 'Concert One', cursive;
+    color: #01a1f1;
+}
+
+.card-body p{
+    font-size: min(max(12px, 3vw), 14px);
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 900;
+}
+
+/* footer */
+footer {
+    color: #01a1f1;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        display: none;
+    }
+}
+    
