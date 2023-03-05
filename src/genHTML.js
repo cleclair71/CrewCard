@@ -127,21 +127,21 @@ const generateIntern = function (intern) {
 
 
 // create engineer card
-pageArray = [];
-pageArray.push(employees
-    .filter(employee => employee.getRole() === 'Manager')
-    .map(manager => generateManager(manager)));
+// pageArray = [];
+// pageArray.push(employees
+//     .filter(employee => employee.getRole() === 'Manager')
+//     .map(manager => generateManager(manager)));
 
-    pageArray.push(employees
-        .filter(employee => employee.getRole() === 'Engineer')
-        .map(engineer => generateEngineer(engineer))
-        .join(''));
+//     pageArray.push(employees
+//         .filter(employee => employee.getRole() === 'Engineer')
+//         .map(engineer => generateEngineer(engineer))
+//         .join(''));
 
-        pageArray.push(employees
-            .filter(employee => employee.getRole() === 'Intern')
-            .map(intern => generateIntern(intern))
-            .join(''));
-            return pageArray.join('');
+//         pageArray.push(employees
+//             .filter(employee => employee.getRole() === 'Intern')
+//             .map(intern => generateIntern(intern))
+//             .join(''));
+//             return pageArray.join('');
         }
 
 // push to page array

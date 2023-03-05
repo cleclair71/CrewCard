@@ -5,19 +5,19 @@ const fs = require('fs');
 const api = require('./src/api.js');
 const path = require('path');
 
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const OUTPUT_DIR = path.resolve(__dirname, 'dist');
-const outputPath = path.join(OUTPUT_DIR, 'index.html');
+//? const OUTPUT_DIR = path.resolve(__dirname, 'dist');
+//? const outputPath = path.join(OUTPUT_DIR, 'index.html');
+
 const crewArray = [];
 
 // Manager questions
 
 const addManager = () => {
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -81,16 +81,18 @@ const addManager = () => {
 
     .then(async managerInput => {
         const { name, id, email, username, officeNumber } = managerInput;
-        try {
+
+        //? try {
+
           const userData = await api.getUser(username);
           const manager = new Manager(name, id, email, username, officeNumber);
           manager.avatar_url = userData.avatar_url;
           crewArray.push(manager);
           console.log(manager);
 
-        } catch (err) {
-            console.log(err);
-        }
+        //? } catch (err) {
+        // ?    console.log(err);
+        // }?
     })
 };
 
@@ -102,7 +104,7 @@ const addEmployee = () => {
     Add a New Employee
     =================
     `);
-    inquirer.prompt([
+   return inquirer.prompt([
         {
             type: 'list',
             name: 'role',
@@ -191,24 +193,23 @@ const addEmployee = () => {
           let avatar_url;
       
           if (role === 'Engineer') {
-              try {
+            //   try {
                   const userData = await api.getUser(username);
                  const employee = new Engineer(name, id, email, username);
                   employee.avatar_url = userData.avatar_url; // add avatar_url to employee object
                   console.log(employee);
-              } catch (error) {
-                  console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-                  employee = new Engineer(name, id, email, username);
-              }
+            //   } catch (error) {
+                //   console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
+            //   }
           } else if (role === 'Intern') {
               const employee = new Intern(name, id, email, school, username);
-              try {
+            //   try {
                   const userData = await api.getUser(username);
                   employee.avatar_url = userData.avatar_url;
                   console.log(employee);
-              } catch (error) {
-                  console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-              }
+            //   } catch (error) {
+                //   console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
+            //   }
           }
       
           crewArray.push(employee);
@@ -222,6 +223,17 @@ const addEmployee = () => {
   };
 
 //! ERROR: TypeError: Cannot read property 'genHTML' of undefined
+
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', pageHTML, {encoding:'utf8',flag:'w'}, data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log('Your Crew Cards have been created! Check out index.html to see it!');
+        }
+    });
+};
 addManager()
     .then(addEmployee)
     .then(crewArray => {
