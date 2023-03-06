@@ -201,11 +201,7 @@ If you have any questions about this project, please don't hesitate to reach out
 2. **Create a new issue:** If you can't find the answer to your question in the documentation, please create a new issue in the project's issue tracker. Be sure to provide as much detail as possible about your question, including any relevant code snippets or screenshots.
 
 3. **Contact cleclair71 directly:** If you prefer to contact me directly, you can do so by sending me an email at cassieleclair71@gmail.com. Please include "Question about README Generator" in the subject line so that I can quickly identify your message.
-<div align="center">
-<a href="https://github.com/cleclair71/readme-generator">
-     <img src="/Assets/img/cassielogo.png" alt="head shot" width="150" height="150">
-   </a>
-   </div>
+
    <p align="center"> 
    <a href="https://github.com/cleclair71/readme-generator/tree/master">My Repository</a>
    </p>
