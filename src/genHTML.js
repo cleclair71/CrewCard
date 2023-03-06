@@ -2,9 +2,6 @@
 // const generateCrew = (employees) => {
     // let pageArray = [];
 
-    const Manager = require('../lib/Manager');
-    const Engineer = require('../lib/Engineer');
-    const Intern = require('../lib/Intern');
     const generateManager = function (manager) {
         return `
     <div class="col-md-4">
@@ -33,7 +30,6 @@
                     </div>
     `;
     }
-    module.exports = generateManager;
 
     const generateEngineer = function (engineer) {
         return `
@@ -62,7 +58,6 @@
                     </div>
     `;
     }
-    module.exports = generateEngineer;
     // create intern card
 const generateIntern = function (intern) {
     return `
@@ -87,50 +82,45 @@ const generateIntern = function (intern) {
 </div>
 `;
 };
-module.exports = generateIntern;
-
 
 // push to page array
-//! error getRole not defined
-
-
-const generateCrew = (data) => {
-    let pageArray = [];
-    
-    for (let i = 0; i < data.length; i++) {
-      const employee = data[i];
-      const role = employee.getRole();
-  
-      if (role === 'Manager') {
-        const managerCard = generateManager(employee);
-  
-        pageArray.push(managerCard);
-  
-      }
-  
-      if (role === 'Engineer') {
-        const engineerCard = generateEngineer(employee);
-  
-        pageArray.push(engineerCard);
-  
-      }
-  
-      if (role === 'Intern') {
-        const internCard = generateIntern(employee);
-  
-        pageArray.push(internCard);
-  
-      }
-  
-    }
-    
-    const employeeCards = pageArray.join('')
-    
-    const crewDiv = document.querySelector(".row.justify-content-center");
-    crewDiv.innerHTML = employeeCards;
-  }
+// const generateCrew = (data) => {
+//     pageArray = [];
+     
+//      for (let i = 0; i < data.length; i++) {
+//        const employee = data[i];
+//        const role = employee.getRole();
+   
+//        if (role === 'Manager') {
+//          const managerCard = generateManager(employee);
+   
+//          pageArray.push(managerCard);
+   
+//        }
+   
+//        if (role === 'Engineer') {
+//          const engineerCard = generateEngineer(employee);
+   
+//          pageArray.push(engineerCard);
+   
+//        }
+   
+//        if (role === 'Intern') {
+//          const internCard = generateIntern(employee);
+   
+//          pageArray.push(internCard);
+   
+//        }
+   
+//      }
+     
+//      const employeeCards = pageArray.join('')
+     
+//  const generateCrew = generatesCrewPage(employeeCards);
+//  return generateCrew;
+//    }
 // create html
-const generateCrewPage = function (employeeCards) {
+const generateCrewPage = (crewArray) => {
     // module.exports = employees => {
     return `
     <!Doctype html>

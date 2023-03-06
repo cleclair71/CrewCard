@@ -1,4 +1,7 @@
-const genHTML = require('./src/genHTML.js');
+const generateCrewPage = require('./src/genHTML.js');
+const generateManager = require('./lib/Manager.js');
+const generateEngineer = require('./lib/Engineer.js');
+const generateIntern = require('./lib/Intern.js');
 
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -222,7 +225,41 @@ const addEmployee = () => {
       });
   };
 
-//! ERROR: TypeError: Cannot read property 'genHTML' of undefined
+  const generateCrew = (data) => {
+    pageArray = [];
+     
+     for (let i = 0; i < data.length; i++) {
+       const employee = data[i];
+       const role = employee.getRole();
+   
+       if (role === 'Manager') {
+         const managerCard = new generateManager(employee);
+   
+         pageArray.push(managerCard);
+   
+       }
+   
+       if (role === 'Engineer') {
+         const engineerCard = generateEngineer(employee);
+   
+         pageArray.push(engineerCard);
+   
+       }
+   
+       if (role === 'Intern') {
+         const internCard = generateIntern(employee);
+   
+         pageArray.push(internCard);
+   
+       }
+   
+     }
+     
+     const employeeCards = pageArray.join('')
+     
+ const generateCrew = generatesCrewPage(employeeCards);
+ return generateCrew;
+   }
 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', pageHTML, {encoding:'utf8',flag:'w'}, data, err => {
@@ -237,7 +274,7 @@ const writeFile = data => {
 addManager()
     .then(addEmployee)
     .then(crewArray => {
-        return genHTML(crewArray);
+        return generateCrew(crewArray);
     })
     .then(pageHTML => {
         return fs.writeFileSync('./dist/index.html', pageHTML, {encoding:'utf8',flag:'w'});     
