@@ -187,7 +187,9 @@ async function getAvatarUrl(username) {
     return userData.avatar_url;
 }
 
+// prompts the user to either add additional employees or finish building their team and end the program
 function addAnotherEmployee() {
+    // Prompt the user to select a choice from a list of options
     inquirer
         .prompt(
             {
@@ -198,30 +200,35 @@ function addAnotherEmployee() {
             }
         )
         .then((response) => {
-
+// If user chose to finish building team, generate the HTML file and end the program
             if (response.action === 'Crew is Complete!') {
                 writeToFile();
             }
-
+ // If user chose to add another employee, prompt them to enter new employee's details
             else {
+                // Determine which type of employee the user chose to add
                 if (response.action === 'Add Engineer') {
                     var inquirerPrompt = generateEngineer;
                 }
                 else if (response.action === 'Add Intern') {
                     var inquirerPrompt = generateIntern;
                 }
+                  // Prompt the user to enter the new employee's details and add them to the team
                 inquirer
                     .prompt(inquirerPrompt)
                     .then((response) => {
                         addRole(response);
+                        // Prompt the user to add another employee 
                         addAnotherEmployee();
                     })
             }
         })
 }
 
+// Generates an HTML file containing the team info and saves it in the 'dist' folder
 function writeToFile() {
     var data = generateHTML();
+    // Write the generated HTML to the 'index.html' file in the 'dist' folder
     fs.writeFile('./dist/index.html', data, (err) => {
         if (err)
             console.log(err);
@@ -231,6 +238,7 @@ function writeToFile() {
     });
 }
 
+// Generates the HTML template for the team page
 function generateHTML() {
     var template =
         `
@@ -308,10 +316,14 @@ function generateHTML() {
     return template;
 }
 
+// Generates the HTML for each employee card
 function generateCrew() {
+    // Loop through the employees array and generate the HTML for each employee
     var crewCard = "";
     employees.forEach(employee => {
+        // Switch statement to determine which type of employee is being generated
         switch (employee.constructor.name) {
+            // Generate the Crew Card for Manager
             case 'Manager':
                 crewCard +=
                     `
@@ -341,6 +353,7 @@ function generateCrew() {
                                 </div>
                 `;
                 break;
+            // Generate the Crew Card for Engineer
             case 'Engineer':
                 crewCard +=
                     `
@@ -369,6 +382,8 @@ function generateCrew() {
                                 </div>
                 `;
                 break;
+
+                // Generate the Crew Card for Intern
             case 'Intern':
                 crewCard +=
                     `
@@ -407,4 +422,5 @@ function init() {
         })
 }
 
+// Call the `init` function to start the program
 init();

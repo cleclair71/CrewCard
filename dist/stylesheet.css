@@ -1,11 +1,17 @@
-/* font-family: 'Concert One', cursive;
-font-family: 'Montserrat Alternates', sans-serif; */
+/* Background Styling */
+body {
+    background: #b9eaf9;
+}
+
+.profile-area {
+    padding: 80px 0;
+}
 
 .jumbotron {
     background: #b9eaf9;
     padding: 2%;
     margin: 5%;
-    box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
     overflow: hidden;
     border-radius: 15px;
 }
@@ -27,23 +33,21 @@ font-family: 'Montserrat Alternates', sans-serif; */
     font-family: 'Montserrat Alternates', sans-serif;
     letter-spacing: 2px;
 }
+
+/* Quote font colour */
 .lead {
     color: #ffffffbb;
 }
-.navbar-brand img{
+
+/* Navbar Logo */
+.navbar-brand img {
     padding: none;
     max-height: 150px;
 }
 
-body {
-    background: #b9eaf9;
-}
-.profile-area {
-    padding:80px 0;
-}
-
+/* Main card styling */
 .card {
-    box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
     overflow: hidden;
     border-radius: 15px;
     min-width: 200px;
@@ -51,7 +55,9 @@ body {
     margin-left: 2%;
     margin-right: 2%;
 }
- .btn {
+
+/* collapse button styling */
+.btn {
     border-radius: 50%;
     text-align: center;
     font-size: min(max(20px, 5vw), 24px);
@@ -61,16 +67,19 @@ body {
     display: inline-block;
     position: relative;
     background-color: #b64ad498;
-   
- }
-.img1 img{
-    
+
+}
+
+/* cover photo */
+.img1 img {
+
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     width: 100%;
 }
 
-.avatar img{
+/* avatar */
+.avatar img {
     position: relative;
     display: block;
     margin-left: auto;
@@ -83,23 +92,26 @@ body {
     margin-top: -80px;
 }
 
-.card:hover .avatar img{
+/* hover over avatar */
+.card:hover .avatar img {
     border-color: #b64ad4;
     transition: .7s;
 }
 
+/* Text styling */
 .main-text {
-    
     text-align: center;
 }
-.main-text h3, h4{
-text-transform: uppercase;
-font-family: 'Concert One', cursive;
+
+.main-text h3, h4 {
+    text-transform: uppercase;
+    font-family: 'Concert One', cursive;
 }
 
-.main-text h4{
+.main-text h4 {
     color: #b64ad4b4;
 }
+
 .main-text h3 {
     font-size: min(max(16px, 4vw), 22px);
     font-weight: 900;
@@ -107,7 +119,8 @@ font-family: 'Concert One', cursive;
     color: #01a1f1;
 }
 
-.card-body p{
+/* Collapsible information */
+.card-body p {
     font-size: min(max(12px, 3vw), 14px);
     font-family: 'Montserrat Alternates', sans-serif;
     font-weight: 900;
@@ -123,4 +136,3 @@ footer {
         display: none;
     }
 }
-    
