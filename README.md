@@ -24,6 +24,8 @@
 * [Contributing](#contributing)
 
 * [Resources](#resources)
+
+* [Tests](#tests)
  
 * [license](#license)
 
@@ -95,13 +97,11 @@ After answering all the prompts, your index.html file will be generated and save
 ## :computer: Usage
 
 <div align="center">
-<a href="https://drive.google.com/file/d/1BiqQRKmAP9fhWI9QXXmKjeUXV7U-QLBe/view>
-     <img src="assets\app.gif" alt="run-through gif" width="740" height="480">
-   </a>
+     <img src="assets\app.gif">
    </div>
    <br />
    <p align="center"> 
-   <a href="https://drive.google.com/file/d/1BiqQRKmAP9fhWI9QXXmKjeUXV7U-QLBe/view">Walk Through Video</a>
+   <a href="https://drive.google.com/file/d/1BiqQRKmAP9fhWI9QXXmKjeUXV7U-QLBe/view">Command Line Walk Through Video</a>
    </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -133,6 +133,31 @@ git push origin your-branch-name
 ```
 5. **Open a Pull Request:** Open a pull request to merge your changes into the main branch of the original project.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="tests"></a>
+
+## :heavy_check_mark: Tests
+
+### Material
+
+Tests are run with [JEST](https://jestjs.io/)
+
+### How to Run the Tests
+
+* Setup the Environment
+
+```
+cd \CrewCard
+```
+
+* Run Tests
+
+```
+npm run test
+```
+
+  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="license"></a>
