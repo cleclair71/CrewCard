@@ -144,6 +144,32 @@ function emailInput(input) {
     }
 }
 
+async function addRole (data) {
+    data.id = Number.parseInt(data.id);
+
+    if (data.office !== undefined) {
+        data.office = Number.parseInt(data.office); 
+        const manager = new Manager(data.name, data.id, data.email, data.office);
+        manager.avatar_url = await getAvatarUrl(data.username);
+        employees.push(manager);
+    }
+    else if (data.github !== undefined) {
+        const engineer = new Engineer(data.name, data.id, data.email, data.github);
+        engineer.avatar_url = await getAvatarUrl(data.github);
+        employees.push(engineer);
+    }
+    else if (data.school !== undefined) {
+        const intern = new Intern(data.name, data.id, data.email, data.school);
+        intern.avatar_url = await getAvatarUrl(data.username);
+        employees.push(intern);
+    }
+}
+
+async function getAvatarUrl(username) {
+    const userData = await api.getUser(username);
+    return userData.avatar_url;
+}
+
 const writeFile = data => {
     fs.writeFile('./dist/index.html', pageHTML, {encoding:'utf8',flag:'w'}, data, err => {
         if (err) {
