@@ -232,7 +232,7 @@ function generateHTML() {
             href="https://fonts.googleapis.com/css2?family=Concert+One&family=Montserrat+Alternates:wght@100;300&display=swap"
             rel="stylesheet">
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="stylesheet.css">
     </head>
     
     <body>
