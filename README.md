@@ -37,7 +37,7 @@
 <a name="description"></a>
 ## :rocket: About The Project
 <p align="center">
-  <img src="/Assets/img/Capture.JPG" alt="Screenshot"/>
+  <img src="/Assets/Capture.JPG"/>
 </p>
 
 Introducing our command-line application designed to help managers generate a webpage that displays their team's basic information, such as their email addresses and GitHub profiles. This allows for quick and easy access to important team member information. The webpage is nicely formatted and based on the user input. When you click on an email address in the webpage, your default email program will open and populate the TO field with the email address. Additionally, when you click on a team member's GitHub username, the application will open that GitHub profile in a new tab.
@@ -95,13 +95,13 @@ After answering all the prompts, your index.html file will be generated and save
 ## :computer: Usage
 
 <div align="center">
-<a href="https://drive.google.com/file/d/1qBYG2vbscJXd2rnEmpjzx8Tr6mmLNwMo/view">
-     <img src="/Assets/img/Untitled_ Feb 23, 2023 1_44 PM (1).gif" alt="run-through gif" width="740" height="480">
+<a href="https://drive.google.com/file/d/1BiqQRKmAP9fhWI9QXXmKjeUXV7U-QLBe/view>
+     <img src="/assets/app.gif" alt="run-through gif" width="740" height="480">
    </a>
    </div>
    <br />
    <p align="center"> 
-   <a href="https://drive.google.com/file/d/1qBYG2vbscJXd2rnEmpjzx8Tr6mmLNwMo/view">Walk Through Video</a>
+   <a href="https://drive.google.com/file/d/1BiqQRKmAP9fhWI9QXXmKjeUXV7U-QLBe/view">Walk Through Video</a>
    </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

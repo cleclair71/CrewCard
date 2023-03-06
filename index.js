@@ -1,13 +1,13 @@
-const api = require('./src/api');
-const inquirer = require("inquirer");
-const fs = require('fs');
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+const api = require('./src/api'); // api calls
+const inquirer = require("inquirer"); // inquirer for user input
+const fs = require('fs'); // file system
+const Manager = require('./lib/Manager'); // manager class
+const Engineer = require('./lib/Engineer'); // engineer class
+const Intern = require('./lib/Intern'); // intern class
 
-let employees = [];
+let employees = []; // array of employee objects
 
-// Manager questions
+//manager questions
 
 const addManager = [
     {
@@ -49,7 +49,7 @@ const addManager = [
     },
 ]
 
-//add Engineer questions
+//engineer questions
 
 const generateEngineer = [
     {
@@ -77,6 +77,7 @@ const generateEngineer = [
         validate: nameInput,
     },
 ]
+// intern questions
 const generateIntern = [
     {
         type: 'input',
@@ -117,6 +118,7 @@ const generateIntern = [
     },
 ]
 
+// validate number input
 function numberInput(input) {
     if (Number.isInteger(Number.parseInt(input))) {
         return true;
@@ -125,7 +127,7 @@ function numberInput(input) {
         return "Please enter a valid ID!";
     }
 }
-
+// validate name input
 function nameInput(input) {
     if (input === "") {
         return "I hate to tell you what to do, but you must enter a value!"
@@ -134,7 +136,7 @@ function nameInput(input) {
         return true;
     }
 }
-
+// validate email
 function emailInput(input) {
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(input)) {
         return true;
@@ -144,29 +146,44 @@ function emailInput(input) {
     }
 }
 
-async function addRole (data) {
+// This function takes in employee data and creates a new Employee object based on their role. 
+
+// The employee object is then pushed to the employees array.
+async function addRole(data) {
+    // Convert the id value to a number using parseInt() method.
     data.id = Number.parseInt(data.id);
 
+    // If the employee's role is a Manager, create new Manager object and push it to the employees array.
+
+    // set the avatar_url property of the Manager object using the username provided by the user.
     if (data.office !== undefined) {
-        data.office = Number.parseInt(data.office); 
+        data.office = Number.parseInt(data.office);
         const manager = new Manager(data.name, data.id, data.email, data.office);
         manager.avatar_url = await getAvatarUrl(data.username);
         employees.push(manager);
     }
+    // If the employee's role is an Engineer, create a new Engineer object and push it to the employees array.
+
+    // Set the avatar_url property of the Engineer object using the github username provided by the user.
     else if (data.github !== undefined) {
         const engineer = new Engineer(data.name, data.id, data.email, data.github);
         engineer.avatar_url = await getAvatarUrl(data.github);
         employees.push(engineer);
     }
+    // If the employee's role is an Intern, create a new Intern object and push it to the employees array.
+
+    // Set the avatar_url property of the Intern object using the username provided by the user
     else if (data.school !== undefined) {
         const intern = new Intern(data.name, data.id, data.email, data.school);
         intern.avatar_url = await getAvatarUrl(data.username);
         employees.push(intern);
     }
 }
-
+// This function takes in a Github username and returns the avatar url of the user.
 async function getAvatarUrl(username) {
+    // Make an API call to get the user data using the Github API.
     const userData = await api.getUser(username);
+    // Return the avatar url of the user.
     return userData.avatar_url;
 }
 
@@ -184,11 +201,11 @@ function addAnotherEmployee() {
 
             if (response.action === 'Crew is Complete!') {
                 writeToFile();
-            } 
+            }
 
             else {
                 if (response.action === 'Add Engineer') {
-                    var inquirerPrompt = generateEngineer; 
+                    var inquirerPrompt = generateEngineer;
                 }
                 else if (response.action === 'Add Intern') {
                     var inquirerPrompt = generateIntern;
@@ -215,8 +232,8 @@ function writeToFile() {
 }
 
 function generateHTML() {
-    var template = 
-    `
+    var template =
+        `
     <!Doctype html>
     <html lang="en">
     
@@ -288,7 +305,7 @@ function generateHTML() {
 </body>
 
 </html>`;
-return template;
+    return template;
 }
 
 function generateCrew() {
@@ -296,8 +313,8 @@ function generateCrew() {
     employees.forEach(employee => {
         switch (employee.constructor.name) {
             case 'Manager':
-                crewCard += 
-                `
+                crewCard +=
+                    `
                 <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-header">
@@ -325,8 +342,8 @@ function generateCrew() {
                 `;
                 break;
             case 'Engineer':
-                crewCard += 
-                `
+                crewCard +=
+                    `
                 <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-header">
@@ -353,8 +370,8 @@ function generateCrew() {
                 `;
                 break;
             case 'Intern':
-                crewCard += 
-                `
+                crewCard +=
+                    `
                 <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
@@ -386,7 +403,7 @@ function init() {
         .prompt(addManager)
         .then((response) => {
             addRole(response);
-            addAnotherEmployee(); 
+            addAnotherEmployee();
         })
 }
 
