@@ -1,265 +1,148 @@
-const generateCrewPage = require('./src/genHTML.js');
-const generateManager = require('./lib/Manager.js');
-const generateEngineer = require('./lib/Engineer.js');
-const generateIntern = require('./lib/Intern.js');
-
-const inquirer = require('inquirer');
+const api = require('./src/api');
+const inquirer = require("inquirer");
 const fs = require('fs');
-const api = require('./src/api.js');
-const path = require('path');
-
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-//? const OUTPUT_DIR = path.resolve(__dirname, 'dist');
-//? const outputPath = path.join(OUTPUT_DIR, 'index.html');
-
-const crewArray = [];
+let employees = [];
 
 // Manager questions
 
-const addManager = () => {
-    return inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is the name of the crew manager? (Required)',
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a name!');
-                    return false;
-                }
+const addManager = [
+    {
+        type: 'input',
+        message: 'What is the name of the crew manager? (Required)',
+        name: 'name',
+        validate: nameInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the managers ID? (Required)',
+        name: 'id',
+        validate: numberInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the crew managers email? (Required)',
+        name: 'email',
+        validate: emailInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the crew managers office number? (Required)',
+        name: 'office',
+        validate: numberInput,
+    },
+    {
+        type: 'input',
+        name: 'username',
+        message: 'What is the employees Github username? (Required)',
+        validate: ghInput => {
+            if (ghInput) {
+                return true;
+            } else {
+                console.log('Please enter a Github username!');
+                return false;
             }
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'What is the managers ID? (Required)',
-            validate: nameInput => {
-                if (isNaN(nameInput)) {
-                    console.log('Please enter the ID!');
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is the crew managers email? (Required)',
-            validate: email => {
-                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                if (valid) {
-                    return true;
-                } else {
-                    console.log('Please enter an email!')
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: 'What is the crew managers office number? (Required)',
-            validate: nameInput => {
-                if (isNaN(nameInput)) {
-                    console.log('Please enter an office number!')
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        },
-        {
-            type: 'input',
-            message: "What is their Github username?",
-            name: 'username',
-        },
-
-    ])
-
-    .then(async managerInput => {
-        const { name, id, email, username, officeNumber } = managerInput;
-
-        //? try {
-
-          const userData = await api.getUser(username);
-          const manager = new Manager(name, id, email, username, officeNumber);
-          manager.avatar_url = userData.avatar_url;
-          crewArray.push(manager);
-          console.log(manager);
-
-        //? } catch (err) {
-        // ?    console.log(err);
-        // }?
-    })
-};
-
-//add employee questions
-
-const addEmployee = () => {
-    console.log(`
-    =================
-    Add a New Employee
-    =================
-    `);
-   return inquirer.prompt([
-        {
-            type: 'list',
-            name: 'role',
-            message: 'What is the role of the employee?',
-            choices: ['Engineer', 'Intern']
-        },
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is the name of the employee? (Required)',
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a name!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'What is the employees ID? (Required)',
-            validate: nameInput => {
-                if (isNaN(nameInput)) {
-                    console.log('Please enter the ID!');
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is the employees email? (Required)',
-            validate: email => {
-                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-                if (valid) {
-                    return true;
-                } else {
-                    console.log('Please enter an email!')
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'username',
-            message: 'What is the employees Github username? (Required)',
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a Github username!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'school',
-            message: 'What school does the intern attend? (Required)',
-            when: (input) => input.role === 'Intern',
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a school!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'confirm',
-            name: 'confirmAddEmployee',
-            message: 'Would you like to add another employee?',
-            default: false
         }
-    ])
+    },
+]
 
-      .then(async employeeData => {
-          let { name, id, email, role, username, school, confirmAddEmployee } = employeeData;
-      
-          let employee;
-          let avatar_url;
-      
-          if (role === 'Engineer') {
-            //   try {
-                  const userData = await api.getUser(username);
-                 const employee = new Engineer(name, id, email, username);
-                  employee.avatar_url = userData.avatar_url; // add avatar_url to employee object
-                  console.log(employee);
-            //   } catch (error) {
-                //   console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-            //   }
-          } else if (role === 'Intern') {
-              const employee = new Intern(name, id, email, school, username);
-            //   try {
-                  const userData = await api.getUser(username);
-                  employee.avatar_url = userData.avatar_url;
-                  console.log(employee);
-            //   } catch (error) {
-                //   console.log(`Error fetching GitHub data for ${username}: ${error.message}`);
-            //   }
-          }
-      
-          crewArray.push(employee);
-      
-          if (confirmAddEmployee) {
-              return addEmployee(crewArray);
-          } else {
-              return crewArray;
-          }
-      });
-  };
+//add Engineer questions
 
-  const generateCrew = (data) => {
-    pageArray = [];
-     
-     for (let i = 0; i < data.length; i++) {
-       const employee = data[i];
-       const role = employee.getRole();
-   
-       if (role === 'Manager') {
-         const managerCard = new generateManager(employee);
-   
-         pageArray.push(managerCard);
-   
-       }
-   
-       if (role === 'Engineer') {
-         const engineerCard = generateEngineer(employee);
-   
-         pageArray.push(engineerCard);
-   
-       }
-   
-       if (role === 'Intern') {
-         const internCard = generateIntern(employee);
-   
-         pageArray.push(internCard);
-   
-       }
-   
-     }
-     
-     const employeeCards = pageArray.join('')
-     
- const generateCrew = generatesCrewPage(employeeCards);
- return generateCrew;
-   }
+const generateEngineer = [
+    {
+        type: 'input',
+        message: 'What is the name of the employee? (Required)',
+        name: 'name',
+        validate: nameInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the employees ID? (Required)',
+        name: 'id',
+        validate: numberInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the employees email? (Required)',
+        name: 'email',
+        validate: emailInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the employees Github username? (Required)',
+        name: 'github',
+        validate: nameInput,
+    },
+]
+const generateIntern = [
+    {
+        type: 'input',
+        message: 'What is the name of the employee? (Required)',
+        name: 'name',
+        validate: nameInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the employees ID? (Required)',
+        name: 'id',
+        validate: numberInput,
+    },
+    {
+        type: 'input',
+        message: 'What is the employees email? (Required)',
+        name: 'email',
+        validate: emailInput,
+    },
+    {
+        type: 'input',
+        message: 'What school does the intern attend? (Required)',
+        name: 'school',
+        validate: nameInput,
+    },
+    {
+        type: 'input',
+        name: 'username',
+        message: 'What is the employees Github username? (Required)',
+        validate: ghInput => {
+            if (ghInput) {
+                return true;
+            } else {
+                console.log('Please enter a Github username!');
+                return false;
+            }
+        }
+    },
+]
+
+function numberInput(input) {
+    if (Number.isInteger(Number.parseInt(input))) {
+        return true;
+    }
+    else {
+        return "Please enter a valid ID!";
+    }
+}
+
+function nameInput(input) {
+    if (input === "") {
+        return "I hate to tell you what to do, but you must enter a value!"
+    }
+    else {
+        return true;
+    }
+}
+
+function emailInput(input) {
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(input)) {
+        return true;
+    }
+    else {
+        return "Caught you! Please enter a valid email address!"
+    }
+}
 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', pageHTML, {encoding:'utf8',flag:'w'}, data, err => {
