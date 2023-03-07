@@ -101,7 +101,7 @@ After answering all the prompts, your index.html file will be generated and save
    </div>
    <br />
    <p align="center"> 
-   <a href="https://drive.google.com/file/d/1BiqQRKmAP9fhWI9QXXmKjeUXV7U-QLBe/view">Command Line Walk Through Video</a>
+   <a href="https://drive.google.com/file/d/1oZJElx4QXzcGZlfQwMoUEVd9D6Ld_YKO/view?usp=sharing">Walk Through Video</a>
    </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
